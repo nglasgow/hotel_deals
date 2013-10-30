@@ -1,0 +1,44 @@
+<div class="banner">
+  <h2><%= link_to (image_tag("logo.jpeg")), "http://www.expedia.com/", target: "_blank" %>&nbsp;&nbsp;&nbsp;&nbsp;Hotel Specials</span></h2>
+</div></br>
+<%= render "search_hotel_deals" %>
+<div class="table-responsive">
+  <table class="table table-striped b-t text-sm">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Hotel</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Timeframe</th>
+        <th>Promotion</th>
+        <th>Regular Rate</th>
+        <th>Special Deal</th>
+        <th>% Savings!</th>
+        <th>* Rating</th>
+        <th>Guest Rating</th>
+        <th>All Inclusive?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hotel_deals.each do |e| %>
+        <tr>
+          <td><%= image_tag e.image_url %></td>
+          <td class="hotel-name-column"><%= e.hotel_name %></td>
+          <td><%= e.destination %></td>
+          <td class="description-column"><%= e.hotel_description %></td>
+          <td class="hotel-name-column"><%= e.hotel_address %></td>
+          <td><%= e.timeframe %></td>
+          <td class="hotel-name-column"><%= e.special_promotion_description %></td>
+          <td><%= raw regular_rate_string(e) %></td>
+          <td class="special-deal"><%= raw special_deal_string(e) %></td>
+          <td class="special-deal"><%= e.percent_savings.to_s + "%" %></td>
+          <td><%= e.star_rating %></td>
+          <td><%= e.guest_rating %></td>
+          <td><%= e.all_inclusive_display %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
